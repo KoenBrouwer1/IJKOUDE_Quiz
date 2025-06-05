@@ -1,22 +1,24 @@
-    
-  .red-button {
+.red-button {
     background-color: #ff4d4d;
     color: rgb(0, 0, 0);
-  }
-  .green-button {
+}
+
+.green-button {
     background-color: #4dff4d;
     color: rgb(0, 0, 0);
-  }
-  .blue-button {
+}
+
+.blue-button {
     background-color: #0f8cfa;
     color: rgb(0, 0, 0);
-  }
-  .yellow-button {
+}
+
+.yellow-button {
     background-color: #f6f639;
     color: black;
-  }
-  
-  .buttons {
+}
+
+.buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -25,4 +27,19 @@
     grid-column: 2 / -1;
     gap: 20px;
     margin: 0;
-  }
+}
+
+.wrong-btn:disabled {
+    background-color: red;
+    color: black;
+}
+
+.right-btn {
+    background-color: green;
+    color: white;
+}
+
+.selected-wrong {
+    background-color: darkred;
+    color: black;
+}
