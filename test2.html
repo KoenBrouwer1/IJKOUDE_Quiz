@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cyber Quiz</title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1 class="question_count"></h1>
+        <div class="question-container">
+            <h2 id="question">Dit is de vraag</h2> 
+        </div> 
+
+        <div class="answers-container">
+            <button class="question" id="answer_0" onclick="CheckQuestion(0)">
+                <p class="answer">Dit is een antwoord</p> 
+            </button> 
+            <button class="question" id="answer_1" onclick="CheckQuestion(1)">
+                <p class="answer">Dit is een antwoord</p> 
+            </button> 
+            <button class="question" id="answer_2" onclick="CheckQuestion(2)">
+                <p class="answer">Dit is een antwoord</p> 
+            </button> 
+        </div>
+
+        <h3 id="show_outcome"></h3>
+
+        <button id="next_question" onclick="NextQuestion()">Volgende vraag!</button>
+
+        <script src="main.js"></script>
+    </body>
+</html>

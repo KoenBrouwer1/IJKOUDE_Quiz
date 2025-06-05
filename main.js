@@ -18,9 +18,10 @@ const quiz = {
 const _answer_0 = document.querySelector("#answer_0");
 const _answer_1 = document.querySelector("#answer_1");
 const _answer_2 = document.querySelector("#answer_2");
+const _answer_3 = document.querySelector("#answer_3");
 const _showOutcome = document.querySelector("#show_outcome");
 
-const _answersArray = [_answer_0, _answer_1, _answer_2];
+const _answersArray = [_answer_0, _answer_1, _answer_2, _answer_3];
 
 const _question = document.querySelector("#question");
 const _right_question = document.querySelector(".right_questions");
