@@ -10,7 +10,7 @@ const quiz = {
             id: 1,
             question: "Wat is het antwoord van de volgende vraag?",
             options: ["Antwoord 1", "Antwoord a;sdjf;aslkdfj2", "Antwoord 3", "Antwoord 4"],
-            answer: 1,
+            answer: 3,
         }
     ]
 };
@@ -37,6 +37,10 @@ let questionsRight = parseInt(localStorage.getItem("questionsRight")) || 0;
 let questionIndex = 0;
 let currentQuestion = quiz.questions[questionIndex];
 let rightAnswer = quiz.questions[questionIndex].answer;
+
+function SetNextButton() {
+    document.querySelector("#next-question-btn").style.display = "block";
+}
 
 function SetQuestion(currentQuestion) {
     if (_question != null) {
@@ -71,28 +75,28 @@ function SetAnswerColors(answerId, wasRight) {
         if (answerIndex == rightAnswer) {
             answer.classList.remove(_wrongAnwserClass);
             answerBtn.classList.add(_rightAnwserClass);
-            console.log(answerIndex);
         }
         answerIndex++;
         answerBtn = document.querySelector("#answer_" + answerIndex);
-        console.log(answerBtn);
     });
 
     if (wasRight) {
-        console.log(answerId);
         _answersArray[answerId].classList.remove(_wrongAnwserClass);
         _answersArray[answerId].classList.add(_rightAnwserClass);
     } else {
         _answersArray[answerId].classList.remove(_wrongAnwserClass);
         _answersArray[answerId].classList.add(_selectedWrongClass);
     }
+
+    SetNextButton();
 }
 
-function ResetQuestions() {
+function ResetAnswers() {
     _answersArray.forEach(answer => {
         answer.disabled = false;
         answer.classList.remove(_wrongAnwserClass);
         answer.classList.remove(_rightAnwserClass);
+        answer.classList.remove(_selectedWrongClass);
     });
 }
 
@@ -105,6 +109,7 @@ function CheckQuestion(answerId) {
         localStorage.setItem("questionsRight", questionsRight);
     }
 
+    console.log(wasRight);
     SetAnswerColors(answerId, wasRight);
 }
 
@@ -117,7 +122,6 @@ function SetQuestionInfo() {
 
     if (_right_question != null) {
         _right_question.innerText = `${questionsCount}/${localStorage.getItem("questionsRight")}`
-        console.log(questionsRight);
     }
 }
 
@@ -135,12 +139,13 @@ function NextQuestion() {
         return;
     }
 
-    currentQuestion = quiz.questions[questionIndex]
+    currentQuestion = quiz.questions[questionIndex];
+    rightAnswer = quiz.questions[questionIndex].answer;
 
     SetQuestion(currentQuestion);
     SetAnswers(currentQuestion);
     SetQuestionInfo();
-    ResetQuestions();
+    ResetAnswers();
 }
 
 

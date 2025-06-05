@@ -68,6 +68,14 @@ p {
     font-size: 25px;
 }
 
+#next-question-btn {
+    display: none;
+    width: 100%;
+    margin-top: 20px;
+    height: 60px;
+    background-color: lightblue;
+}
+
 /* From Uiverse.io by mobinkakei */
 /* button {
   position: relative;
