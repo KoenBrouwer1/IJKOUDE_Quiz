@@ -1,16 +1,114 @@
 const quiz = {
     questions: [
         {
-            id: 0,
-            question: "Wat is het antwoord van deze vraag?",
-            options: ["Antwoord 1", "Antwoord 2", "Antwoord 3", "Antwoord 4"],
-            answer: 0,
+            "id": 0,
+            "question": "What is the dark web, as explained in documentaries about cybercrime?",
+            "options": [
+                "A part of the internet that is public to everyone",
+                "A hidden part of the internet that is only accessible with special software",
+                "A network that is only used by the government",
+                "A search engine for illegal activities"
+            ],
+            "answer": 1
         },
         {
-            id: 1,
-            question: "Wat is het antwoord van de volgende vraag?",
-            options: ["Antwoord 1", "Antwoord a;sdjf;aslkdfj2", "Antwoord 3", "Antwoord 4"],
-            answer: 3,
+            "id": 1,
+            "question": "Why is the dark web often associated with cybercrime?",
+            "options": [
+                "Because it is only used for legal activities",
+                "Because it offers anonymity to users, attracting criminals",
+                "Because it is only accessible to hackers",
+                "Because it does not use encryption"
+            ],
+            "answer": 1
+        },
+        {
+            "id": 2,
+            "question": "Which technology is often mentioned as a tool in fighting cybercrime in such documentaries?",
+            "options": [
+                "Virtual Reality (VR)",
+                "Artificial Intelligence (AI)",
+                "Blockchain",
+                "Quantum Computing"
+            ],
+            "answer": 1
+        },
+        {
+            "id": 3,
+            "question": "Which browser is commonly used to access the dark web?",
+            "options": [
+                "Google Chrome",
+                "Mozilla Firefox",
+                "Tor Browser",
+                "Microsoft Edge"
+            ],
+            "answer": 2
+        },
+        {
+            "id": 4,
+            "question": "What is a common type of cybercrime that takes place on the dark web?",
+            "options": [
+                "Online gaming",
+                "Sale of stolen identities and data",
+                "Sharing public information",
+                "Streaming movies"
+            ],
+            "answer": 1
+        },
+        {
+            "id": 5,
+            "question": "What was the Silk Road, as mentioned in documentaries about the dark web?",
+            "options": [
+                "A legal online marketplace",
+                "A dark web website for selling drugs, later shut down by the FBI",
+                "A social network on the dark web",
+                "A secure communication tool"
+            ],
+            "answer": 1
+        },
+        {
+            "id": 6,
+            "question": "Why does the documentary state that it is almost inevitable for people to become victims of cyberattacks?",
+            "options": [
+                "Because everyone has a bad internet connection",
+                "Because almost everyone with internet access is a potential target",
+                "Because only companies are targeted",
+                "Because cyberattacks are rare"
+            ],
+            "answer": 1
+        },
+        {
+            "id": 7,
+            "question": "What role does encryption play in the dark web?",
+            "options": [
+                "It makes websites faster",
+                "It provides anonymity and secures communication",
+                "It prevents websites from being found",
+                "It is not used on the dark web"
+            ],
+            "answer": 1
+        },
+        {
+            "id": 8,
+            "question": "What is an example of a cyber threat mentioned in documentaries about the dark web?",
+            "options": [
+                "Phishing attacks",
+                "Online advertisements",
+                "Social media posts",
+                "Public Wi-Fi networks"
+            ],
+            "answer": 0
+        },
+        {
+            "id": 9,
+            "question": "How is AI used to combat cybercrime according to the documentary?",
+            "options": [
+                "By designing websites",
+                "By detecting suspicious patterns and preventing attacks",
+                "By creating new viruses",
+                "By speeding up internet connections"
+            ],
+            "answer": 1
         }
     ]
 };
@@ -24,7 +122,7 @@ const _showOutcome = document.querySelector("#show_outcome");
 const _answersArray = [_answer_0, _answer_1, _answer_2, _answer_3];
 
 const _question = document.querySelector("#question");
-const _right_question = document.querySelector(".right_questions");
+const _right_questions = document.querySelector(".right_questions");
 const _next_button = document.querySelector("#next-question-btn");
 
 const questionsCount = quiz.questions.length;
@@ -40,7 +138,7 @@ let currentQuestion = quiz.questions[questionIndex];
 let rightAnswer = quiz.questions[questionIndex].answer;
 
 function SetNextButton() {
-    if(_next_button.disabled == true)
+    if (_next_button.disabled == true)
         _next_button.disabled = false;
     else
         _next_button.disabled = true;
@@ -58,7 +156,7 @@ function SetAnswers(currentQuestion) {
     let answerIndex = 0;
 
     _answersArray.forEach(answer => {
-        if(answer != null) {
+        if (answer != null) {
             answer.innerText = currentQuestion.options[answerIndex];
             answerIndex++;
         }
@@ -124,8 +222,8 @@ function SetQuestionInfo() {
     });
     questionsHad++;
 
-    if (_right_question != null) {
-        _right_question.innerText = `${questionsCount}/${localStorage.getItem("questionsRight")}`
+    if (_right_questions != null) {
+        _right_questions.innerText = `You had ${localStorage.getItem("questionsRight")} of the ${questionsCount} right.`
     }
 }
 
