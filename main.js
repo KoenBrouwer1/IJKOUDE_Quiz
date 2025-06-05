@@ -25,6 +25,7 @@ const _answersArray = [_answer_0, _answer_1, _answer_2, _answer_3];
 
 const _question = document.querySelector("#question");
 const _right_question = document.querySelector(".right_questions");
+const _next_button = document.querySelector("#next-question-btn");
 
 const questionsCount = quiz.questions.length;
 const _rightAnwserClass = "right-btn";
@@ -39,7 +40,10 @@ let currentQuestion = quiz.questions[questionIndex];
 let rightAnswer = quiz.questions[questionIndex].answer;
 
 function SetNextButton() {
-    document.querySelector("#next-question-btn").style.display = "block";
+    if(_next_button.disabled == true)
+        _next_button.disabled = false;
+    else
+        _next_button.disabled = true;
 }
 
 function SetQuestion(currentQuestion) {
@@ -88,7 +92,6 @@ function SetAnswerColors(answerId, wasRight) {
         _answersArray[answerId].classList.add(_selectedWrongClass);
     }
 
-    SetNextButton();
 }
 
 function ResetAnswers() {
@@ -111,6 +114,7 @@ function CheckQuestion(answerId) {
 
     console.log(wasRight);
     SetAnswerColors(answerId, wasRight);
+    SetNextButton();
 }
 
 function SetQuestionInfo() {
@@ -145,6 +149,7 @@ function NextQuestion() {
     SetQuestion(currentQuestion);
     SetAnswers(currentQuestion);
     SetQuestionInfo();
+    SetNextButton();
     ResetAnswers();
 }
 

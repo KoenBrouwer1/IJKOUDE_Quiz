@@ -69,11 +69,15 @@ p {
 }
 
 #next-question-btn {
-    display: none;
     width: 100%;
     margin-top: 20px;
     height: 60px;
     background-color: lightblue;
+}
+
+#next-question-btn:disabled {
+    background-color: #5f7780;
+    box-shadow: none;
 }
 
 /* From Uiverse.io by mobinkakei */
