@@ -3,14 +3,14 @@ const quiz = {
         {
             id: 0,
             question: "Wat is het antwoord van deze vraag?",
-            options: ["Antwoord 1", "Antwoord 2", "Antwoord 3"],
-            answer: "Antwoord 2",
+            options: ["Antwoord 1", "Antwoord 2", "Antwoord 3", "Antwoord 4"],
+            answer: 0,
         },
         {
             id: 1,
             question: "Wat is het antwoord van de volgende vraag?",
-            options: ["Antwoord 1", "Antwoord a;sdjf;aslkdfj2", "Antwoord 3"],
-            answer: "Antwoord 1",
+            options: ["Antwoord 1", "Antwoord a;sdjf;aslkdfj2", "Antwoord 3", "Antwoord 4"],
+            answer: 1,
         }
     ]
 };
@@ -27,12 +27,16 @@ const _question = document.querySelector("#question");
 const _right_question = document.querySelector(".right_questions");
 
 const questionsCount = quiz.questions.length;
+const _rightAnwserClass = "right-btn";
+const _wrongAnwserClass = "wrong-btn";
+const _selectedWrongClass = "selected-wrong";
+
 let questionsHad = 0;
 let questionsRight = parseInt(localStorage.getItem("questionsRight")) || 0;
 
-
 let questionIndex = 0;
 let currentQuestion = quiz.questions[questionIndex];
+let rightAnswer = quiz.questions[questionIndex].answer;
 
 function SetQuestion(currentQuestion) {
     if (_question != null) {
@@ -56,32 +60,52 @@ function SetAnswers(currentQuestion) {
 
 StartQuiz();
 
-function DisableQuestions(questionId) {
-    let answerId = "answer_" + questionId;
+function SetAnswerColors(answerId, wasRight) {
+    let answerIndex = 0;
+    let answerBtn = document.querySelector("#answer_" + answerIndex);
+
     _answersArray.forEach(answer => {
-        if (answer.id != answerId) {
-            answer.disabled = true;
+        answer.classList.add(_wrongAnwserClass);
+        answer.disabled = true;
+
+        if (answerIndex == rightAnswer) {
+            answer.classList.remove(_wrongAnwserClass);
+            answerBtn.classList.add(_rightAnwserClass);
+            console.log(answerIndex);
         }
+        answerIndex++;
+        answerBtn = document.querySelector("#answer_" + answerIndex);
+        console.log(answerBtn);
     });
 
+    if (wasRight) {
+        console.log(answerId);
+        _answersArray[answerId].classList.remove(_wrongAnwserClass);
+        _answersArray[answerId].classList.add(_rightAnwserClass);
+    } else {
+        _answersArray[answerId].classList.remove(_wrongAnwserClass);
+        _answersArray[answerId].classList.add(_selectedWrongClass);
+    }
 }
 
 function ResetQuestions() {
     _answersArray.forEach(answer => {
         answer.disabled = false;
+        answer.classList.remove(_wrongAnwserClass);
+        answer.classList.remove(_rightAnwserClass);
     });
 }
 
-function CheckQuestion(questionId) {
-    if (questionId == questionIndex) {
-        _showOutcome.innerText = "Goed";
+function CheckQuestion(answerId) {
+    let wasRight = false;
+
+    if (answerId == rightAnswer) {
         questionsRight++;
+        wasRight = true;
         localStorage.setItem("questionsRight", questionsRight);
-    } else {
-        _showOutcome.innerText = "Niet goed";
     }
-    DisableQuestions(questionId);
-    console.log(questionsRight);
+
+    SetAnswerColors(answerId, wasRight);
 }
 
 function SetQuestionInfo() {
