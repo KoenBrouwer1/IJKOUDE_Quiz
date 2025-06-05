@@ -2,18 +2,22 @@
   .red-button {
     background-color: #ff4d4d;
     color: rgb(0, 0, 0);
+    padding: 30px 100px;
   }
   .green-button {
     background-color: #4dff4d;
     color: rgb(0, 0, 0);
+    padding: 30px 100px;
   }
   .blue-button {
     background-color: #0f8cfa;
     color: rgb(0, 0, 0);
+    padding: 30px 100px;
   }
   .yellow-button {
     background-color: #f6f639;
     color: black;
+    padding: 30px 100px;
   }
   
   .buttons {

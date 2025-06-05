@@ -1,6 +1,11 @@
 @font-face {
     font-family: ijskoud;
-    src: url("Firstsnow-nRYmg.ttf");
+    src: url("../Firstsnow-nRYmg.ttf");
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 body {
@@ -19,6 +24,7 @@ body {
 
 .start-button {
     background-color: #4788e3;
+    padding: 20px 40px;
 }
 
 h1 {
@@ -29,7 +35,6 @@ h1 {
 }
 
 p {
-    color: #ffffff;
     font-size: 20px;
     margin-bottom: 20px;
     padding: 0;
