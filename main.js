@@ -218,12 +218,12 @@ function CheckQuestion(answerId) {
 function SetQuestionInfo() {
     let show = document.querySelectorAll(".question_count");
     show.forEach(tag => {
-        tag.innerText = `${questionsHad}/${questionsCount}`
+        tag.innerText = `${questionsHad}/${questionsCount}`;
     });
     questionsHad++;
 
     if (_right_questions != null) {
-        _right_questions.innerText = `You had ${localStorage.getItem("questionsRight")} of the ${questionsCount} right.`
+        _right_questions.innerText = `You had ${localStorage.getItem("questionsRight")} of the ${questionsCount} right.`;
     }
 }
 
