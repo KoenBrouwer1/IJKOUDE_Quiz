@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IJSKOUDE Cyber Quiz</title>
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/answer-buttons.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>This is the result page</h1>
-    <p class="right_questions"></p>
+    <h1>How did you do?</h1>
+        <div class="container">
+            <div class="info-container">
+                <p class="right_questions"></p>
+            </div> 
+            <div class="info-container">
+                <p class="right-percentage" id="percentage"></p> 
+            </div>
+        </div>
+        <button class="reset-quiz" id="reset_quiz" onclick="QuizAgain()">Go again</button>
+
 
     <script src="main.js"></script>
 </body>
