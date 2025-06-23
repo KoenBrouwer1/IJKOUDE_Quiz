@@ -211,7 +211,7 @@ function CheckQuestion(answerId) {
 
 function GetPercentage() {
     console.log(questionsRight);
-    return (questionsRight/questionsCount) * 100;
+    return Math.round((questionsRight/questionsCount) * 100);
 }
 
 function SetQuestionInfo() {
@@ -226,6 +226,10 @@ function SetQuestionInfo() {
 
     if (_right_questions != null) {
         _right_questions.innerText = `${localStorage.getItem("questionsRight")}/${questionsCount}`
+    }
+
+    if(window.location.href === "http://127.0.0.1:8080/result.html") {
+        showPercentage.innerText = GetPercentage() + "%";
     }
 }
 
