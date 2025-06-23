@@ -2,10 +2,10 @@ const quiz = {
     questions: [
         {
             "id": 0,
-            "question": "What is the dark web, as explained in documentaries about cybercrime?",
+            "question": "What is the dark web?",
             "options": [
-                "A part of the internet that is public to everyone",
-                "A hidden part of the internet that is only accessible with special software",
+                "A part of the internet that is public to everyone", 
+                "A hidden part of the internet that is only accessible with special software", // Right answer
                 "A network that is only used by the government",
                 "A search engine for illegal activities"
             ],
@@ -16,22 +16,22 @@ const quiz = {
             "question": "Why is the dark web often associated with cybercrime?",
             "options": [
                 "Because it is only used for legal activities",
-                "Because it offers anonymity to users, attracting criminals",
                 "Because it is only accessible to hackers",
+                "Because it offers anonymity to users, attracting criminals", // Right answer
                 "Because it does not use encryption"
             ],
-            "answer": 1
+            "answer": 2
         },
         {
             "id": 2,
-            "question": "Which technology is often mentioned as a tool in fighting cybercrime in such documentaries?",
+            "question": "Which technology is often mentioned as a tool in fighting cybercrime to do certain tasks faster?",
             "options": [
                 "Virtual Reality (VR)",
-                "Artificial Intelligence (AI)",
-                "Blockchain",
-                "Quantum Computing"
+                "Virtual Machine (VM)",
+                "Quantum Computing",
+                "Artificial Intelligence (AI)" // Right answer
             ],
-            "answer": 1
+            "answer": 3
         },
         {
             "id": 3,
@@ -57,18 +57,7 @@ const quiz = {
         },
         {
             "id": 5,
-            "question": "What was the Silk Road, as mentioned in documentaries about the dark web?",
-            "options": [
-                "A legal online marketplace",
-                "A dark web website for selling drugs, later shut down by the FBI",
-                "A social network on the dark web",
-                "A secure communication tool"
-            ],
-            "answer": 1
-        },
-        {
-            "id": 6,
-            "question": "Why does the documentary state that it is almost inevitable for people to become victims of cyberattacks?",
+            "question": "Why is it almost inevitable for people to become victims of cyberattacks?",
             "options": [
                 "Because everyone has a bad internet connection",
                 "Because almost everyone with internet access is a potential target",
@@ -78,19 +67,8 @@ const quiz = {
             "answer": 1
         },
         {
-            "id": 7,
-            "question": "What role does encryption play in the dark web?",
-            "options": [
-                "It makes websites faster",
-                "It provides anonymity and secures communication",
-                "It prevents websites from being found",
-                "It is not used on the dark web"
-            ],
-            "answer": 1
-        },
-        {
-            "id": 8,
-            "question": "What is an example of a cyber threat mentioned in documentaries about the dark web?",
+            "id": 6,
+            "question": "What is an example of a cyber threat?",
             "options": [
                 "Phishing attacks",
                 "Online advertisements",
@@ -100,15 +78,26 @@ const quiz = {
             "answer": 0
         },
         {
-            "id": 9,
+            "id": 7,
             "question": "How is AI used to combat cybercrime according to the documentary?",
             "options": [
                 "By designing websites",
-                "By detecting suspicious patterns and preventing attacks",
                 "By creating new viruses",
-                "By speeding up internet connections"
+                "By speeding up internet connections",
+                "By detecting suspicious patterns and preventing attacks"
             ],
-            "answer": 1
+            "answer": 3
+        },
+        {
+            "id": 8,
+            "question": "What was WannaCry?",
+            "options": [
+                "A randsomware attack that forced the victem to pay a certain price to regain access to their files", // Right answer
+                "Have a very annoying colleague and wannyCry",
+                "It is a game on the dark web that if you lose you WannaCry",
+                "It is nothing and it is just made up"
+            ],
+            "answer": 0
         }
     ]
 };
@@ -144,6 +133,11 @@ function SetNextButton() {
         _next_button.disabled = true;
 }
 
+function ResetScore() {
+    questionsRight = 0;
+    localStorage.setItem("questionsRight", questionsRight);
+}
+
 function SetQuestion(currentQuestion) {
     if (_question != null) {
         _question.innerText = currentQuestion.question;
@@ -161,7 +155,6 @@ function SetAnswers(currentQuestion) {
             answerIndex++;
         }
     });
-
 }
 
 StartQuiz();
@@ -189,15 +182,16 @@ function SetAnswerColors(answerId, wasRight) {
         _answersArray[answerId].classList.remove(_wrongAnwserClass);
         _answersArray[answerId].classList.add(_selectedWrongClass);
     }
-
 }
 
 function ResetAnswers() {
     _answersArray.forEach(answer => {
-        answer.disabled = false;
-        answer.classList.remove(_wrongAnwserClass);
-        answer.classList.remove(_rightAnwserClass);
-        answer.classList.remove(_selectedWrongClass);
+        if (answer != null) {
+            answer.disabled = false;
+            answer.classList.remove(_wrongAnwserClass);
+            answer.classList.remove(_rightAnwserClass);
+            answer.classList.remove(_selectedWrongClass);
+        }
     });
 }
 
@@ -215,15 +209,23 @@ function CheckQuestion(answerId) {
     SetNextButton();
 }
 
+function GetPercentage() {
+    console.log(questionsRight);
+    return (questionsRight/questionsCount) * 100;
+}
+
 function SetQuestionInfo() {
-    let show = document.querySelectorAll(".question_count");
-    show.forEach(tag => {
-        tag.innerText = `${questionsHad}/${questionsCount}`
+    let showCount = document.querySelectorAll(".question_count");
+    let showPercentage = document.querySelector("#percentage");
+
+    showCount.forEach(tag => {
+        tag.innerText = "HELLO";
     });
+
     questionsHad++;
 
     if (_right_questions != null) {
-        _right_questions.innerText = `You had ${localStorage.getItem("questionsRight")} of the ${questionsCount} right.`
+        _right_questions.innerText = `${localStorage.getItem("questionsRight")}/${questionsCount}`
     }
 }
 
@@ -256,5 +258,11 @@ function StartQuiz() {
     SetQuestion(currentQuestion);
     SetAnswers(currentQuestion);
     SetQuestionInfo();
+}
+
+function QuizAgain() {
+    ResetAnswers();
+    ResetScore();
+    window.location.href = "quiz.html";
 }
 
