@@ -79,7 +79,7 @@ const quiz = {
         },
         {
             "id": 7,
-            "question": "How is AI used to combat cybercrime according to the documentary?",
+            "question": "How is AI used to combat cybercrime according to the video?",
             "options": [
                 "By designing websites",
                 "By creating new viruses",
@@ -98,6 +98,17 @@ const quiz = {
                 "It is nothing and it is just made up"
             ],
             "answer": 0
+        },
+        {
+            "id": 9,
+            "question": "What was the Morris Worm?",
+            "options": [
+                "A virus developed in 2005 to target smartphones across Europe.",
+                "A cybersecurity tool used by the U.S. government to track hackers.",
+                "A worm created in 1988 that accidentally infected 10% procent of the internetconnected computers, causing damage at 98 million dollar",
+                "An email scam that stole bank credentials from millions of users."
+            ],
+            "answer": 2
         }
     ]
 };
