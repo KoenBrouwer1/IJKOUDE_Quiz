@@ -6,20 +6,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IJSKOUDE Cyber Quiz</title>
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/uiverse.css" rel="stylesheet">
     <link href="css/answer-buttons.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>How did you do?</h1>
-        <div class="container">
-            <div class="info-container">
-                <p class="right_questions"></p>
-            </div> 
-            <div class="info-container">
-                <p class="right-percentage" id="percentage"></p> 
+    <div class="result-page-wrapper">
+        <h1 class="result-title">🎉 Your Quiz Results 🎉</h1>
+        <div class="quiz-container result-container">
+            <div class="result-badge">
+                <span id="badge-emoji">🏅</span>
             </div>
+            <div class="container result-inner">
+                <div class="info-container">
+                    <p class="right_questions" id="right_questions">You answered X out of Y questions correctly.</p>
+                </div>
+                <div class="info-container">
+                    <p class="right-percentage" id="percentage">Score: Z%</p>
+                </div>
+            </div>
+            <button class="start-button btn-shine reset-quiz" id="reset_quiz" onclick="QuizAgain()">🔄 Try Again</button>
         </div>
-        <button class="reset-quiz" id="reset_quiz" onclick="QuizAgain()">Go again</button>
+    </div>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .result-page-wrapper {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .result-title {
+            color: #fff;
+            text-shadow: 0 4px 24px #0008, 0 1px 0 #222;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-align: center;
+            animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .result-container {
+            background: rgba(255,255,255,0.10);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 2.5rem 2rem 2rem 2rem;
+            max-width: 700px;
+            width: 800px;
+            margin: 0 auto;
+            border: 1.5px solid rgba(255,255,255,0.18);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            animation: fadeIn 1s;
+            position: relative;
+            height: 500px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .result-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            margin-top: -2.5rem;
+        }
+        #badge-emoji {
+            font-size: 3.5rem;
+            filter: drop-shadow(0 2px 12px #ffd70088);
+            animation: badgePop 1s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes badgePop {
+            0% { transform: scale(0.3) rotate(-30deg); opacity: 0; }
+            60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0); }
+        }
+        .result-inner {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        .info-container {
+            background: rgba(255,255,255,0.18);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 0.5rem 0;
+            width: 70%;
+            box-shadow: 0 2px 8px 0 rgba(30,60,114,0.10);
+            text-align: center;
+        }
+        .right_questions, .right-percentage {
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 8px #0004;
+        }
+        .right-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 0 2px 12px #0006, 0 1px 0 #fff4;
+        }
+        .reset-quiz {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            padding: 0.8rem 2.2rem;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 0 4px 16px #dd247655;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            outline: none;
+            letter-spacing: 1px;
+        }
+        .reset-quiz:hover, .reset-quiz:focus {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px #dd2476aa;
+            background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+        }
+    </style>
+    <script>
+        // Example: Replace X, Y, Z with actual values from your quiz logic
+        // You can fetch these from localStorage or pass them from your quiz script
+        const correct = localStorage.getItem('correctAnswers') || 0;
+        const total = localStorage.getItem('totalQuestions') || 0;
+        const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+        document.getElementById('right_questions').textContent = `You answered ${correct} out of ${total} questions correctly.`;
+        document.getElementById('percentage').textContent = `Score: ${percent}%`;
+
+        // Show different badge emoji based on score
+        const badge = document.getElementById('badge-emoji');
+        if (percent >= 90) badge.textContent = "🏆";
+        else if (percent >= 70) badge.textContent = "🥇";
+        else if (percent >= 50) badge.textContent = "🥈";
+        else if (percent > 0) badge.textContent = "🥉";
+        else badge.textContent = "💡";
+
+        function QuizAgain() {
+            // Clear quiz data and redirect to quiz start page
+            localStorage.removeItem('correctAnswers');
+            localStorage.removeItem('totalQuestions');
+            window.location.href = 'index.html';
+        }
+    </script>
 
 
     <script src="main.js"></script>
