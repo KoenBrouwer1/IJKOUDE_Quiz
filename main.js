@@ -2,6 +2,17 @@ const quiz = {
     questions: [
         {
             "id": 0,
+            "question": "With what virus was the first MAJOR randsomware attack?",
+            "options": [
+                "Wannacry 2017",
+                "Petja 1016",
+                "Stuxnet 2010",
+                "Trojan 1989"
+            ],
+            "answer": 2
+        },
+        {
+            "id": 1,
             "question": "What is the dark web?",
             "options": [
                 "A part of the internet that is public to everyone", 
@@ -12,7 +23,7 @@ const quiz = {
             "answer": 1
         },
         {
-            "id": 1,
+            "id": 2,
             "question": "Why is the dark web often associated with cybercrime?",
             "options": [
                 "Because it is only used for legal activities",
@@ -23,7 +34,7 @@ const quiz = {
             "answer": 2
         },
         {
-            "id": 2,
+            "id": 3,
             "question": "Which technology is often mentioned as a tool in fighting cybercrime to do certain tasks faster?",
             "options": [
                 "Virtual Reality (VR)",
@@ -34,7 +45,7 @@ const quiz = {
             "answer": 3
         },
         {
-            "id": 3,
+            "id": 4,
             "question": "Which browser is commonly used to access the dark web?",
             "options": [
                 "Google Chrome",
@@ -45,32 +56,32 @@ const quiz = {
             "answer": 2
         },
         {
-            "id": 4,
+            "id": 5,
             "question": "What is a common type of cybercrime that takes place on the dark web?",
             "options": [
                 "Online gaming",
-                "Sale of stolen identities and data",
+                "Sale of stolen identities and data", // Right answer
                 "Sharing public information",
                 "Streaming movies"
             ],
             "answer": 1
         },
         {
-            "id": 5,
+            "id": 6,
             "question": "Why is it almost inevitable for people to become victims of cyberattacks?",
             "options": [
                 "Because everyone has a bad internet connection",
-                "Because almost everyone with internet access is a potential target",
+                "Because almost everyone with internet access is a potential target", // Right answer
                 "Because only companies are targeted",
                 "Because cyberattacks are rare"
             ],
             "answer": 1
         },
         {
-            "id": 6,
+            "id": 7,
             "question": "What is an example of a cyber threat?",
             "options": [
-                "Phishing attacks",
+                "Phishing attacks", // Right answer
                 "Online advertisements",
                 "Social media posts",
                 "Public Wi-Fi networks"
@@ -78,18 +89,18 @@ const quiz = {
             "answer": 0
         },
         {
-            "id": 7,
+            "id": 8,
             "question": "How is AI used to combat cybercrime according to the video?",
             "options": [
                 "By designing websites",
                 "By creating new viruses",
                 "By speeding up internet connections",
-                "By detecting suspicious patterns and preventing attacks"
+                "By detecting suspicious patterns and preventing attacks" // Right answer
             ],
             "answer": 3
         },
         {
-            "id": 8,
+            "id": 9,
             "question": "What was WannaCry?",
             "options": [
                 "A randsomware attack that forced the victem to pay a certain price to regain access to their files", // Right answer
@@ -100,16 +111,60 @@ const quiz = {
             "answer": 0
         },
         {
-            "id": 9,
+            "id": 10,
             "question": "What was the Morris Worm?",
             "options": [
                 "A virus developed in 2005 to target smartphones across Europe.",
                 "A cybersecurity tool used by the U.S. government to track hackers.",
-                "A worm created in 1988 that accidentally infected 10% procent of the internetconnected computers, causing damage at 98 million dollar",
+                "A worm created in 1988 that accidentally infected 10% procent of the internetconnected computers, causing damage at 98 million dollar", // Right answer
                 "An email scam that stole bank credentials from millions of users."
             ],
             "answer": 2
-        }
+        },
+        {
+            "id": 11,
+            "question": "How does the OODA loop apply to cybersecurity defense?",
+            "options": [
+                "It's the Observe–Orient–Decide–Act model, emphasizing that defenders must cycle through these steps faster than attackers.", // Right answer
+                "It is a backup system used to restore files after a ransomware attack.",
+                "It’s a type of firewall that automatically blocks all foreign IP addresses.",
+                "It is a password encryption method used by most modern browsers.",
+            ],
+            "answer": 0
+        },
+        {
+            "id": 12,
+            "question": "What money kind does buyers on the dark web use?",
+            "options": [
+                "Euro",
+                "Dollar",
+                "Bitcoin",
+                "Roepies",
+            ],
+            "answer": 2
+        },
+        {
+            "id": 13,
+            "question": "How do cybercriminal organizations resemble real-world businesses?",
+            "options": [
+                "They work as a normal job from 9 to 5",
+                "They work whenever and whereever they want",
+                "They work from home only in the night",
+                "They work only in the weekends",
+            ],
+            "answer": 0
+        },
+        {
+            "id": 14,
+            "question": "Who is Watson?",
+            "options": [
+                "An AI who is made to help do more advanded cybercrime",
+                "Is a normal AI bot",
+                "The boss of the cybersecurity company",
+                "An AI who is made to help with fighting cybercrime",
+            ],
+            "answer": 3
+        },
     ]
 };
 
@@ -132,6 +187,7 @@ const _selectedWrongClass = "selected-wrong";
 
 let questionsHad = 0;
 let questionsRight = parseInt(localStorage.getItem("questionsRight")) || 0;
+
 
 let questionIndex = 0;
 let currentQuestion = quiz.questions[questionIndex];
@@ -280,4 +336,3 @@ function QuizAgain() {
     ResetScore();
     window.location.href = "quiz.html";
 }
-
